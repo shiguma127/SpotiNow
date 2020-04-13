@@ -40,11 +40,23 @@
                     </v-row>
                   </v-col>
                   <v-col>
-                    <v-layout justify-end>
-                      <v-avatar class="ma-3" size="125" tile>
-                        <v-img :src="item.albumArt"></v-img>
-                      </v-avatar>
-                    </v-layout>
+                    <v-row>
+                      <v-spacer />
+                    </v-row>
+                    <v-row>
+                      <v-col>
+                        <v-layout justify-center>
+                          <v-avatar class="ma-3" size="125" tile>
+                            <v-img :src="item.albumArt"></v-img>
+                          </v-avatar>
+                        </v-layout>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-layout justify-center>
+                        <v-btn color="#4caf50">Listen together</v-btn>
+                      </v-layout>
+                    </v-row>
                   </v-col>
                 </v-row>
               </div>
