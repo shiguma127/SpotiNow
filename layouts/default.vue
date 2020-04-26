@@ -28,10 +28,19 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn
+        v-if="isLogined == false"
+        color="#087f23 "
+        href="http://spotinow.shiguma.net/login"
+        >Login</v-btn
+      >
+      <v-btn icon>
+        <v-icon @click="componentKey += 1">mdi-reload</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
-        <nuxt />
+        <nuxt :key="componentKey" />
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
@@ -41,16 +50,18 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
+      componentKey: 0,
       clipped: false,
       drawer: false,
       fixed: false,
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'HOME',
           to: '/'
         },
         {
@@ -67,8 +78,14 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'SpotiNow'
+      title: 'SpotiNow',
+      isLogined: false
     }
+  },
+  created() {
+    axios
+      .get('http://localhost:8080/api/islogined', { withCredentials: true })
+      .then((response) => (this.isLogined = response.data.islogined))
   }
 }
 </script>

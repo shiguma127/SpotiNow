@@ -1,20 +1,20 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
+  <v-layout justify-center align-center>
+    <v-flex xs12 sm12 md12>
       <v-container>
         <v-row dense>
           <v-col v-for="(item, i) in items" :key="i" cols="12">
-            <v-card :color="item.color" dark>
+            <v-card :color="'#1F7087'" dark>
               <div class="d-flex flex-no-wrap justify-space-between">
                 <v-row class="">
-                  <v-col>
+                  <v-col cols="2">
                     <v-layout justify-center>
                       <v-avatar class="ma-3" size="125">
                         <v-img :src="item.icon"></v-img>
                       </v-avatar>
                     </v-layout>
                     <v-layout justify-center>
-                      <p v-text="item.user"></p>
+                      <p v-text="item.name"></p>
                     </v-layout>
                   </v-col>
                   <v-col>
@@ -47,14 +47,16 @@
                       <v-col>
                         <v-layout justify-center>
                           <v-avatar class="ma-3" size="125" tile>
-                            <v-img :src="item.albumArt"></v-img>
+                            <v-img :src="item.albumart"></v-img>
                           </v-avatar>
                         </v-layout>
                       </v-col>
                     </v-row>
                     <v-row>
                       <v-layout justify-center>
-                        <v-btn color="#4caf50">Listen together</v-btn>
+                        <v-btn color="#4caf50" @click="sendRequest(item.userid)"
+                          >Listen together</v-btn
+                        >
                       </v-layout>
                     </v-row>
                   </v-col>
@@ -67,30 +69,26 @@
     </v-flex>
   </v-layout>
 </template>
-
 <script>
+import axios from 'axios'
+
 export default {
   data: () => ({
-    items: [
-      {
-        color: '#1F7087',
-        icon:
-          'https://pbs.twimg.com/profile_images/1161252458871644161/ckBHovuv_400x400.jpg',
-        albumArt: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-        user: '@shiguma127',
-        artist: 'Foster the People',
-        song: 'hahahahaSong'
-      },
-      {
-        color: '#952175',
-        icon:
-          'https://pbs.twimg.com/profile_images/1161252458871644161/ckBHovuv_400x400.jpg',
-        albumArt: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-        user: '@shiguma128',
-        artist: 'Ellie Goulding',
-        song: 'lalalaSong'
-      }
-    ]
-  })
+    items: null
+  }),
+  created() {
+    axios
+      .get('http://localhost:8080/api/getuser', { withCredentials: true })
+      .then((response) => (this.items = response.data.userlist))
+  },
+  methods: {
+    sendRequest(id) {
+      axios.post(
+        'http://localhost:8080/api/listentogether',
+        { userid: id },
+        { withCredentials: true }
+      )
+    }
+  }
 }
 </script>
