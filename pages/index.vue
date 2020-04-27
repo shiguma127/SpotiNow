@@ -14,7 +14,10 @@
                       </v-avatar>
                     </v-layout>
                     <v-layout justify-center>
-                      <p v-text="item.name"></p>
+                      <p
+                        v-text="item.name"
+                        :class="item.textcolor + '--text'"
+                      ></p>
                     </v-layout>
                   </v-col>
                   <v-col>
@@ -28,13 +31,17 @@
                         <v-card-title
                           class="headline"
                           v-text="item.song"
+                          :class="item.textcolor + '--text'"
                         ></v-card-title>
                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col>
                         <v-layout justify-end align-center>
-                          <v-card-text v-text="item.artist"></v-card-text>
+                          <v-card-text
+                            v-text="item.artist"
+                            :class="item.textcolor + '--text'"
+                          ></v-card-text>
                         </v-layout>
                       </v-col>
                     </v-row>
