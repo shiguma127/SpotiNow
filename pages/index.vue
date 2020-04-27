@@ -4,7 +4,7 @@
       <v-container>
         <v-row dense>
           <v-col v-for="(item, i) in items" :key="i" cols="12">
-            <v-card :color="'#1F7087'" dark>
+            <v-card :color="item.color" dark>
               <div class="d-flex flex-no-wrap justify-space-between">
                 <v-row class="">
                   <v-col cols="2">
