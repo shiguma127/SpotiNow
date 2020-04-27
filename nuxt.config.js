@@ -41,6 +41,9 @@ export default {
     '@nuxtjs/vuetify',
     '@nuxtjs/dotenv'
   ],
+  dotenv: {
+    path: process.cwd()
+  },
   /*
    ** Nuxt.js modules
    */
