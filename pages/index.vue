@@ -78,13 +78,13 @@ export default {
   }),
   created() {
     axios
-      .get('http://localhost:8080/api/getuser', { withCredentials: true })
+      .get('https://spotinowserver.shiguma.net/api/getuser', { withCredentials: true })
       .then((response) => (this.items = response.data.userlist))
   },
   methods: {
     sendRequest(id) {
       axios.post(
-        'http://localhost:8080/api/listentogether',
+        'https://spotinowserver.shiguma.net/api/listentogether',
         { userid: id },
         { withCredentials: true }
       )
