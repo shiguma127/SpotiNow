@@ -7,7 +7,7 @@
             <v-card :color="item.color" dark>
               <div class="d-flex flex-no-wrap justify-space-between">
                 <v-row class="">
-                  <v-col cols="2">
+                  <v-col>
                     <v-layout justify-center>
                       <v-avatar class="ma-3" size="125">
                         <v-img :src="item.icon"></v-img>
