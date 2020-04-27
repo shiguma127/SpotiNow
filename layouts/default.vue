@@ -84,7 +84,9 @@ export default {
   },
   created() {
     axios
-      .get('https://spotinowserver.shiguma.net/api/islogined', { withCredentials: true })
+      .get('https://spotinowserver.shiguma.net/api/islogined', {
+        withCredentials: true
+      })
       .then((response) => (this.isLogined = response.data.islogined))
   }
 }

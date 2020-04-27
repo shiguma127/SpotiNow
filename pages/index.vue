@@ -78,7 +78,9 @@ export default {
   }),
   created() {
     axios
-      .get('https://spotinowserver.shiguma.net/api/getuser', { withCredentials: true })
+      .get('https://spotinowserver.shiguma.net/api/getuser', {
+        withCredentials: true
+      })
       .then((response) => (this.items = response.data.userlist))
   },
   methods: {
