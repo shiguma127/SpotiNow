@@ -31,7 +31,7 @@
       <v-btn
         v-if="isLogined == false"
         color="#087f23 "
-        href="http://spotinow.shiguma.net/login"
+        href="https://spotinowserver.shiguma.net/login"
         >Login</v-btn
       >
       <v-btn icon>
