@@ -3,9 +3,20 @@
     <v-flex xs12 sm12 md12>
       <v-container>
         <v-row dense>
+          <v-layout justify-end>
+            <v-alert
+              v-model="hasError"
+              v-if="hasError"
+              type="error"
+              dismissible
+              transition="scale-transition"
+            >
+              <div v-text="errorMessages"></div>
+            </v-alert>
+          </v-layout>
           <v-col v-for="(item, i) in items" :key="i" cols="12">
             <v-card :color="item.color" dark>
-              <div class="d-flex flex-no-wrap justify-space-between">
+              <div class="d-flex flex-wrap justify-space-between">
                 <v-row class="">
                   <v-col>
                     <v-layout justify-center>
@@ -80,7 +91,9 @@
 import axios from 'axios'
 export default {
   data: () => ({
-    items: null
+    hasError: false,
+    items: null,
+    errorMessages: 'error'
   }),
   created() {
     axios
@@ -91,11 +104,19 @@ export default {
   },
   methods: {
     sendRequest(id) {
-      axios.post(
-        'https://spotinowserver.shiguma.net/api/listentogether',
-        { userid: id },
-        { withCredentials: true }
-      )
+      axios
+        .post(
+          'https://spotinowserver.shiguma.net/api/listentogether',
+          { userid: id },
+          { withCredentials: true }
+        )
+        .then((response) => this.alertErrorMessage(response.data.errorMessages))
+    },
+    alertErrorMessage(msg) {
+      if (msg) {
+        this.hasError = true
+        this.errorMessages = msg
+      }
     }
   }
 }
