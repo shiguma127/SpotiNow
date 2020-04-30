@@ -65,11 +65,6 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        },
-        {
           icon: 'mdi-cog-outline',
           title: 'Settings',
           to: '/settings'
