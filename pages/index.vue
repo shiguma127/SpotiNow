@@ -4,15 +4,17 @@
       <v-container>
         <v-row dense>
           <v-layout justify-end>
-            <v-alert
-              v-model="hasError"
-              v-if="hasError"
-              type="error"
-              dismissible
-              transition="scale-transition"
-            >
-              <div v-text="errorMessages"></div>
-            </v-alert>
+            <v-expand-transition>
+              <v-alert
+                v-if="hasError"
+                v-model="hasError"
+                type="error"
+                dismissible
+                transition="scale-transition"
+              >
+                <div v-text="errorMessages"></div>
+              </v-alert>
+            </v-expand-transition>
           </v-layout>
           <v-col v-for="(item, i) in items" :key="i" cols="12">
             <v-card :color="item.color" dark>
