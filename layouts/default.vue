@@ -29,7 +29,7 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn
-        v-if="isLogined == false"
+        v-if="isLogined === false"
         color="#087f23 "
         href="https://spotinowserver.shiguma.net/login"
         >Login</v-btn
@@ -44,7 +44,26 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() + ' shiguma127' }}</span>
+      <v-spacer />
+      <span>
+        <div>
+          <a
+            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+            class="twitter-share-button"
+            data-text="Spotinowで再生中の音楽をシェアしよう♪"
+            data-url="spotinow.shiguma.net"
+            data-hashtags="Spotinow"
+            data-show-count="false"
+            >Tweet</a
+          >
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </div>
+      </span>
     </v-footer>
   </v-app>
 </template>
