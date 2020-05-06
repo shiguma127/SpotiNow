@@ -2,6 +2,13 @@
   <v-layout justify-center align-center>
     <v-flex xs12 sm12 md12>
       <v-container>
+        <v-layout justify-center>
+          <v-progress-circular
+            v-show="onLoading"
+            indeterminate
+            color="#4caf50"
+          ></v-progress-circular>
+        </v-layout>
         <v-row dense>
           <v-layout justify-end>
             <v-expand-transition>
@@ -95,16 +102,22 @@ export default {
   data: () => ({
     hasError: false,
     items: null,
-    errorMessages: 'error'
+    errorMessages: 'error',
+    onLoading: false
   }),
   created() {
-    axios
-      .get('https://spotinowserver.shiguma.net/api/getuser', {
-        withCredentials: true
-      })
-      .then((response) => (this.items = response.data.userlist))
+    this.getinfo()
   },
   methods: {
+    getinfo() {
+      this.onLoading = true
+      axios
+        .get('https://spotinowserver.shiguma.net/api/getuser', {
+          withCredentials: true
+        })
+        .then((response) => (this.items = response.data.userlist))
+        .then((this.onLoading = false))
+    },
     sendRequest(id) {
       axios
         .post(
@@ -119,6 +132,9 @@ export default {
         this.hasError = true
         this.errorMessages = msg
       }
+    },
+    test() {
+      this.onLoading = !this.onLoading
     }
   }
 }
