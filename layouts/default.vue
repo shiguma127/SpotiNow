@@ -22,6 +22,17 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+        <v-list-item
+          v-if="isLogined === false"
+          :href="'https://spotinowserver.shiguma.net/api/logout'"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-account-arrow-right-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="'LogOut'" />
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" color="#4caf50" fixed app>
